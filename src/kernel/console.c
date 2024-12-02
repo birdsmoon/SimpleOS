@@ -1,7 +1,7 @@
 #include <onix/console.h>
 #include <onix/io.h>
 #include <onix/string.h>
-
+#include <onix/assert.h>
 #define CRT_ADDR_REG 0x3D4 // CRT(6845)索引寄存器
 #define CRT_DATA_REG 0x3D5 // CRT(6845)数据寄存器
 
@@ -180,11 +180,10 @@ void console_write(char *buf, u32 count) {
                     pos -= ROW_SIZE;
                     command_lf();
                 }
-                *ptr = ch;
-                ptr ++;
-                *ptr = attr;
-                ptr++;
-                pos += 2;
+                
+                *((char *)pos) = ch;
+                pos++;
+                *((char *)pos) = attr;
                 x++;
                 break;
             }

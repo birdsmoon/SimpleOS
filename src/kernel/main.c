@@ -1,18 +1,17 @@
-#include<onix/onix.h>
-#include<onix/types.h>
-#include<onix/io.h>
-#include<onix/string.h>
-#include<onix/console.h>
+#include <onix/onix.h>
+#include <onix/types.h>
+#include <onix/io.h>
+#include <onix/string.h>
+#include <onix/console.h>
+#include <onix/stdarg.h>
 
-char message[] = "hello system!";
+void test_args(int cnt, ...) {
+    va_list args;
+    va_start(args,cnt);
+}
 
 void kernel_init() {
     console_init();
-
-    u32 count = 20;
-    while (count --)
-    {
-        console_write(message, sizeof(message) - 1);
-    }
+    
     return;
 } 
